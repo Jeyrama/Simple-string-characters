@@ -17,3 +17,20 @@ const solve = x => {
   let s = x.match(/[^A-Z0-9]/gi)||[];
   return [u.length, d.length, n.length, s.length]
 }
+
+// or
+
+const solveArray = (string) => (
+  Object.values([...string].reduce((acc, char) => {
+    if (/[A-Z]/.test(char)) {
+      acc.upper++;
+    } else if (/[a-z]/.test(char)) {
+      acc.lower++;
+    } else if (/[0-9]/.test(char)) {
+      acc.number++;
+    } else {
+      acc.other++;
+    }
+    return acc;
+  }, {  upper: 0, lower: 0, number: 0, other: 0 }))
+)
